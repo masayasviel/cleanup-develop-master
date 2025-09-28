@@ -103,6 +103,11 @@ DATABASES = {
     ),
 }
 
+FIXTURE_DIRS = []
+
+if EXTERNAL_FIXTURES_DIR := os.environ.get('EXTERNAL_FIXTURES_DIR'):
+    FIXTURE_DIRS.append(EXTERNAL_FIXTURES_DIR)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

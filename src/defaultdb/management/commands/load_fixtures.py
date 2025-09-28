@@ -19,6 +19,8 @@ FROM
 class Command(BaseCommand):
     help = 'dependency_load_fixture'
 
+    MAX_RETRIES = 5
+
     def add_arguments(self, parser):
         parser.add_argument(
             "--dir",
@@ -29,8 +31,6 @@ class Command(BaseCommand):
             type=str,
             default="*/fixtures/*.json",
         )
-
-    MAX_RETRIES = 5
 
     def handle(self, *args, **options):
         paths: list[pathlib.Path] = []
