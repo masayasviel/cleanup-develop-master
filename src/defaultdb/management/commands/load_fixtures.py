@@ -40,6 +40,9 @@ class Command(BaseCommand):
         if not dir:
             raise CommandError("--dir is required")
         base = pathlib.Path(dir)
+
+        print("PATH = %s".format(str(base / pattern)))
+
         for p in sorted(set(glob.glob(str(base / pattern)))):
             if p.endswith(".json"):
                 paths.append(pathlib.Path(p).resolve())
