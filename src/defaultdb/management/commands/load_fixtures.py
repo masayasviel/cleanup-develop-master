@@ -60,11 +60,12 @@ class Command(BaseCommand):
             dependency_map[row['table_name']] = s
 
         sorted_list, cyclic_tables = self._topological_sort(dependency_map)
-        print(f"依存解決済み: {sorted_list}")
-        print(f"循環参照: {cyclic_tables}")
 
         sorted_fixtures = [str(fixture_file_map[table]) for table in sorted_list if table in fixture_file_map]
         cyclic_fixtures = [str(fixture_file_map[table]) for table in cyclic_tables if table in fixture_file_map]
+
+        print(f"依存解決済み: {sorted_fixtures}")
+        print(f"循環参照: {cyclic_fixtures}")
 
         # 依存関係が解決済みのfixtureを投入
         if sorted_fixtures:
